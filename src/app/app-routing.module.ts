@@ -3,8 +3,6 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from 'src/app/home/home.component';
 import { LoginComponent } from 'src/app/login/login.component'; 
 import { RegisterComponent } from 'src/app/register/register.component';
-  import { from } from 'rxjs';
-
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'login', component: LoginComponent },
