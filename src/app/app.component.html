@@ -1,19 +1,43 @@
-<nav class="navbar navbar-expand navbar-dark bg-dark">
-    <div class="navbar-nav">
-        <a class="nav-item nav-link" routerLink="/">Home</a>
-        <a *ngIf="currentUser" class="nav-item nav-link" (click)="logout()">Logout</a>
-        <a *ngIf="!currentUser" class="nav-item nav-link" routerLink="/login">Login</a>
-        <a *ngIf="!currentUser" class="nav-item nav-link" routerLink="/register">Register</a>
-    </div>
-</nav>
 
-<!-- main content container -->
-<div class="jumbotron">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-8 offset-sm-2">
-                <router-outlet></router-outlet>
-            </div>
+<!-- Header (Topbar) -->
+    <header class="u-header">
+        <div class="u-header-left">
+            <a class="u-header-logo" routerLink="">
+                <img class="img-fluid" src="./assets/img/logo.png" width="150" alt="Logo">
+            </a>
         </div>
-    </div>
+        <div class="u-header-right navbar">
+            <a  routerLink="/" class="link-muted nav-item nav-link">Home</a>
+            <a *ngIf="!currentUser" routerLink="/login" class="link-muted nav-item nav-link">Sign In</a>
+            <a *ngIf="!currentUser" routerLink="/register" class="link-muted nav-item nav-link">Register</a>
+          
+            <div  *ngIf="currentUser" class="dropdown ml-2">
+              <a class="link-muted d-flex align-items-center" href="#!" role="button" id="dropdownMenuLink" aria-haspopup="true" aria-expanded="false" data-toggle="dropdown">
+                <img class="u-avatar--xs img-fluid rounded-circle mr-2" src="./assets/img/user.png" alt="User Profile">
+                    <span class="text-dark d-none d-sm-inline-block">
+                        {{ currentUser.firstName + " " + currentUser.lastName   }} <small class="fa fa-angle-down text-muted ml-1"></small>
+                    </span>
+              </a>
+
+              <div class="dropdown-menu dropdown-menu-right border-0 py-0 mt-3" aria-labelledby="dropdownMenuLink" style="width: 260px;">
+                  <div class="card">
+                        <div class="card-body">
+                            <ul class="list-unstyled mb-0">
+                                <li>
+                                    <a class="d-flex align-items-center link-dark" (click)="logout()" href="#!">
+                                        <span class="h3 mb-0"><i class="far fa-share-square text-muted mr-2"></i></span> Sign Out
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                  </div>
+              </div>
+            </div>
+          <!-- End User Profile -->
+        </div>
+    </header>
+    <!-- End Header (Topbar) -->
+<!-- main content container -->
+<div class="container">
+    <router-outlet></router-outlet>  
 </div>
