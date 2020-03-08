@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MemberService } from '../_services'
 
 @Component({
   selector: 'app-home',
@@ -6,10 +7,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-
-  constructor() { }
+  isLoading = true;
+  constructor(
+    private memberService: MemberService
+  ) { }
 
   ngOnInit(): void {
+    this.memberService.getMembers()
   }
 
 }
