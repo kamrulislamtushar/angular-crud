@@ -4,10 +4,24 @@ import { Observable, of, throwError } from 'rxjs';
 import { delay, mergeMap, materialize, dematerialize } from 'rxjs/operators';
 
 import { User, Role } from '../_models';
-
+let members = JSON.parse(localStorage.getItem('members')) || [];
 const users: User[] = [
-    { id: 1, email: 'admin@test.com', password: 'admin', firstName: 'Admin', lastName: 'User', role: Role.Admin },
-    { id: 2, email: 'executive@test.com', password: 'executive', firstName: 'Executive', lastName: 'User', role: Role.Executive }
+    { 
+        id: 1,
+        email: 'admin@test.com', 
+        password: 'admin', 
+        firstName: 'Admin', 
+        lastName: 'User', 
+        role: Role.Admin 
+    },
+    { 
+        id: 2, 
+        email: 'executive@test.com', 
+        password: 'executive', 
+        firstName: 'Executive', 
+        lastName: 'User', 
+        role: Role.Executive 
+    }
 ];
 
 @Injectable()
@@ -17,7 +31,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         return of(null)
             .pipe(mergeMap(handleRoute))
             .pipe(materialize())
-            .pipe(delay(500))
+            .pipe(delay(900))
             .pipe(dematerialize());
 
         function handleRoute() {
@@ -25,10 +39,10 @@ export class FakeBackendInterceptor implements HttpInterceptor {
             switch (true) {
                 case url.endsWith('/login') && method === 'POST':
                     return authenticate();
-                case url.endsWith('/users') && method === 'GET':
-                    return getUsers();
                 case url.match(/\/users\/\d+$/) && method === 'GET':
                     return getUserById();
+                case url.endsWith('/members') && method === 'GET':
+                    return getMembers();  
                 default:
                     // Pass through any requests not handled above
                     return next.handle(request);
@@ -51,10 +65,9 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                 token: `fake-jwt-token.${user.id}`
             });
         }
-
-        function getUsers() {
-            if (!isAdmin()) return unauthorized();
-            return ok(users);
+        function getMembers() {
+            if (!isLoggedIn()) return unauthorized();
+            return ok(members);
         }
 
         function getUserById() {

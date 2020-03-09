@@ -10,6 +10,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtInterceptor, ErrorInterceptor, fakeBackendProvider } from './_helpers';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { AddMemberComponent } from './add-member/add-member.component';
+import { EditMemberComponent } from './edit-member/edit-member.component';
+import { ViewMemberComponent } from './view-member/view-member.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -17,6 +20,9 @@ import { NotFoundComponent } from './not-found/not-found.component';
     LoginComponent,
     RegisterComponent,
     NotFoundComponent,
+    AddMemberComponent,
+    EditMemberComponent,
+    ViewMemberComponent,
   ],
   imports: [
     BrowserModule,
