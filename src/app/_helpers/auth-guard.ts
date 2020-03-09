@@ -13,7 +13,6 @@ export class AuthGuard implements CanActivate {
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
         const currentUser = this.authenticationService.currentUserValue;
         if (currentUser) {
-            console.log(route)
             // Middleware check for roles
             if (route.data.roles && route.data.roles.indexOf(currentUser.role) === -1) {
                 // If user is unauthorized then redirect to homepage
