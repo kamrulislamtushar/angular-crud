@@ -10,15 +10,28 @@
 </div>
 <div *ngIf="!isLoading" class="u-content vh-100">
     <div class="u-body">
-        <h1 class="h2 font-weight-semibold mb-4">Members</h1>
-
+        <div class="mb-4 mt-4">
+            <nav aria-label="breadcrumb">
+                <h1 class="h3">Members</h1>
+                <ol class="breadcrumb bg-transparent small p-0">
+                    <li class="breadcrumb-item active" aria-current="page"><a routerLink="" href="#">Home</a></li>
+                </ol>
+            </nav>
+        </div>
+        <div *ngIf="error" class="alert alert-soft-danger fade show" role="alert">
+            <i class="fa fa-minus-circle alert-icon mr-3"></i>
+            <span>{{ error }}</span>
+            <button type="button" class="close" aria-label="Close" data-dismiss="alert">
+                <span aria-hidden="true">×</span>
+            </button>
+        </div>
         <div class="card mb-4">
             <header class="card-header">
                 <div class="row">
                     <div class="col-6">
                         <h2 class="h3 card-header-title text-primary">Manage Members</h2>
                     </div>
-                    <div class="col-6">
+                    <div *ngIf="isAdmin()" class="col-6">
                         <a class="float-right btn btn-primary btn-sm" data-toggle="modal" href="#addMemberModal">
                             <i class="fas fa-user-plus"></i> Add Member
                         </a>
@@ -36,58 +49,80 @@
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        <div class="modal-body">
-                            <div class="form-group mb-4">
-                                <label for="name">Full Name</label>
-                                <span class="form-icon-wrapper">
-                                    <span class="form-icon form-icon--left">
-                                        <i class="fa fa-user-circle form-icon__item"></i>
+                        <form [formGroup]="memberForm" (ngSubmit)="onSubmit()">
+                            <div class="modal-body">
+                                <div class="form-group mb-4">
+                                    <label for="name">Full Name</label>
+                                    <span class="form-icon-wrapper">
+                                        <span class="form-icon form-icon--left">
+                                            <i class="fa fa-user-circle form-icon__item"></i>
+                                        </span>
+                                        <input id="name" formControlName="name" name="name"
+                                            [ngClass]="{ 'is-invalid': submitted && form.name.errors }"
+                                            class="form-control form-icon-input-left" type="text" placeholder="John Doe"
+                                            required aria-describedby="John Doe">
+                                        <div *ngIf="submitted && form.name.errors" class="invalid-feedback">
+                                            <div *ngIf="form.name.errors.required">Full Name is required</div>
+                                        </div>
                                     </span>
-                                    <input id="name" name="name" class="form-control form-icon-input-left" type="text"
-                                        placeholder="John Doe" required aria-describedby="John Doe">
-                                </span>
-                            </div>
-                            <div class="form-group mb-4">
-                                <label for="id">Identification Number</label>
-                                <span class="form-icon-wrapper">
-                                    <span class="form-icon form-icon--left">
-                                        <i class="far fa-id-card form-icon__item"></i>
+                                </div>
+                                <div class="form-group mb-4">
+                                    <label for="identity">Identification Number</label>
+                                    <span class="form-icon-wrapper">
+                                        <span class="form-icon form-icon--left">
+                                            <i class="far fa-id-card form-icon__item"></i>
+                                        </span>
+                                        <input id="identity" fromControlName="identity" name="identity"
+                                            class="form-control form-icon-input-left"
+                                            [ngClass]="{ 'is-invalid': submitted && form.identity.errors }" type="text"
+                                            placeholder="Identification Number" required
+                                            aria-describedby="Identification Number">
+                                        <div *ngIf="submitted && form.identity.errors" class="invalid-feedback">
+                                            <div *ngIf="form.identity.errors.required">Identification Number is required
+                                            </div>
+                                        </div>
                                     </span>
-                                    <input id="id" class="form-control form-icon-input-left" type="text"
-                                        placeholder="Identification Number" aria-describedby="Identification Number">
-                                </span>
-                            </div>
-                            <div class="form-group mb-4">
-                                <label for="id">Department</label>
-                                <span class="form-icon-wrapper">
-                                    <span class="form-icon form-icon--left">
-                                        <i class="fas fa-lock form-icon__item"></i>
+                                </div>
+                                <div class="form-group mb-4">
+                                    <label for="id">Department</label>
+                                    <span class="form-icon-wrapper">
+                                        <span class="form-icon form-icon--left">
+                                            <i class="fas fa-lock form-icon__item"></i>
+                                        </span>
+                                        <select formControlName="department"
+                                            [ngClass]="{ 'is-invalid': submitted && form.department.errors }"
+                                            class="form-control form-icon-input-left">
+                                            <option value="">Select Department</option>
+                                            <option value="HR">Human Resource</option>
+                                            <option value="IT">IT Department</option>
+                                            <option value="Marketting">Marketting Department</option>
+                                            <option value="Management">Management Department</option>
+                                            <option value="Networking">Networking Department</option>
+                                        </select>
+                                        <div *ngIf="submitted && form.department.errors" class="invalid-feedback">
+                                            <div *ngIf="form.department.errors.required">Email is required</div>
+                                        </div>
                                     </span>
-                                    <select class="form-control form-icon-input-left">
-                                        <option  value="">Select Department</option>
-                                        <option  value="">Human Resource</option>
-                                        <option  value="">Select Department</option>
-                                    </select>
-                                </span>
+                                </div>
                             </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">Save changes</button>
-                        </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">Save changes</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
-            <div class="card-body">
+            <div class="card-body member-list">
                 <div class="table-responsive">
                     <table class="table table-hover data-table">
                         <thead>
                             <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">ID</th>
-                                <th scope="col">Name</th>
-                                <th scope="col">Department</th>
-                                <th class="text-center" scope="col">Actions</th>
+                                <th scope="col"><i class="fas fa-sort-numeric-down mr-2"></i>#</th>
+                                <th scope="col"><i class="far fa-id-card mr-2"></i>ID</th>
+                                <th scope="col"><i class="fas fa-info-circle mr-2"></i>Name</th>
+                                <th scope="col"><i class="far fa-building mr-2"></i>Department</th>
+                                <th class="text-center" scope="col"><i class="fas fa-cogs mr-2"></i>Actions</th>
                             </tr>
                         </thead>
 
@@ -109,14 +144,16 @@
                                         aria-labelledby="actions1Invoker">
                                         <ul class="list-unstyled mb-0">
                                             <li>
-                                                <a class="d-flex align-items-center link-muted py-2 px-3" href="#!">
-                                                    <i class="fa fa-plus mr-2"></i> Add
+                                                <a class="d-flex align-items-center link-muted py-2 px-3"
+                                                    [routerLink]="['/members/'+ member.id]" href="#!">
+                                                    <i class="fas fa-info-circle mr-2 text-primary"></i> View Details
                                                 </a>
                                             </li>
-                                            <li>
-                                                <a class="d-flex align-items-center link-muted py-2 px-3" href="#!">
-                                                    <i class="fa fa-minus mr-2"></i> Remove
-                                                </a>
+                                            <li *ngIf="isAdmin()">
+                                                <button
+                                                    class="d-flex align-items-center btn btn-link link-muted py-2 px-3"
+                                                    (click)="removeMember(member.id)">
+                                                    <i class="fas fa-minus-circle mr-2 text-danger"></i> Remove</button>
                                             </li>
                                         </ul>
                                     </div>

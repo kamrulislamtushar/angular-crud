@@ -1,1 +1,56 @@
-<p>view-member works!</p>
+<div *ngIf="isLoading" class="loader-main">
+    <div class="loader">
+        <div class="loader__bar"></div>
+        <div class="loader__bar"></div>
+        <div class="loader__bar"></div>
+        <div class="loader__bar"></div>
+        <div class="loader__bar"></div>
+        <div class="loader__ball"></div>
+    </div>
+</div>
+<div *ngIf="!isLoading" class="justify-content-center align-items-center bg-white mnh-100vh">
+    <div class="mb-4 mt-4">
+        <nav aria-label="breadcrumb">
+            <h1 class="h3">Member Details</h1>
+          <ol class="breadcrumb bg-transparent small p-0">
+            <li class="breadcrumb-item"><a routerLink="" href="#">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Member Details</li>
+          </ol>
+        </nav>
+    </div>
+    <div class="card mb-4">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-4 border-md-right border-light text-center">
+                    <img class="img-fluid rounded-circle mb-3" src="../../assets/img/user.png" alt="Image description"
+                        width="84">
+
+                    <h2 class="mb-2">{{ member.name }}</h2>
+                    <div class="row">
+                        <div class="col">
+                            <span class="bg-light text-muted rounded py-2 px-3 mb-2 mr-2"><i
+                                    class="far fa-id-card mr-2"></i>ID: <strong
+                                    class="text-primary">{{ member.id }}</strong></span>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col">
+                            <span class="bg-light text-muted rounded py-2 px-3 mb-2 mr-2"><i
+                                    class="far fa-building mr-2"></i>Department: <strong
+                                    class="text-primary">{{ member.department }}</strong></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-8 mt-5">
+                    <h3 class="card-title">About {{ member.name }}</h3>
+                    <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                        ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit
+                        in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+                        cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

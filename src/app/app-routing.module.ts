@@ -4,11 +4,13 @@ import { HomeComponent } from 'src/app/home/home.component';
 import { LoginComponent } from 'src/app/login/login.component'; 
 import { RegisterComponent } from 'src/app/register/register.component';
 import { NotFoundComponent } from 'src/app/not-found/not-found.component'
+import { ViewMemberComponent } from 'src/app/view-member/view-member.component'
 import { AuthGuard } from './_helpers';
 const routes: Routes = [
   { path: '', component: HomeComponent, canActivate: [AuthGuard]  },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
+  { path: 'members/:id',      component: ViewMemberComponent, canActivate: [AuthGuard] },
 
   // otherwise redirect to home
   { path: '**', component: NotFoundComponent }
