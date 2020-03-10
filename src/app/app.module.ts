@@ -10,9 +10,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtInterceptor, ErrorInterceptor, fakeBackendProvider } from './_helpers';
 import { NotFoundComponent } from './not-found/not-found.component';
-import { AddMemberComponent } from './add-member/add-member.component';
-import { EditMemberComponent } from './edit-member/edit-member.component';
 import { ViewMemberComponent } from './view-member/view-member.component';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,15 +19,15 @@ import { ViewMemberComponent } from './view-member/view-member.component';
     LoginComponent,
     RegisterComponent,
     NotFoundComponent,
-    AddMemberComponent,
-    EditMemberComponent,
     ViewMemberComponent,
+   
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
+    SweetAlert2Module.forRoot()
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
