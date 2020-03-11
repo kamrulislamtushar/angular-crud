@@ -31,7 +31,7 @@ export class EditMemberComponent implements OnInit {
       id: [null, Validators.required],
       department: [null, Validators.required]
     });
-     this.memberId = this.route.snapshot.paramMap.get('id');
+    this.memberId = this.route.snapshot.paramMap.get('id');
     this.memberService.memberDetails(this.memberId)
       .pipe(first())
       .subscribe(

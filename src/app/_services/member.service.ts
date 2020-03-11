@@ -18,12 +18,12 @@ export class MemberService {
     return this.http.post<any>(`${environment.apiUrl}/members`, data);
   }
   deleteMember(id) {
-    return this.http.delete<any>(`${environment.apiUrl}/members/`+id);
+    return this.http.delete<any>(`${environment.apiUrl}/members/` + id);
   }
   memberDetails(id) {
-    return this.http.get<any>(`${environment.apiUrl}/members/`+id);
+    return this.http.get<any>(`${environment.apiUrl}/members/` + id);
   }
   editMember(data, id) {
-    return this.http.put<any>(`${environment.apiUrl}/members/`+id, data);
+    return this.http.put<any>(`${environment.apiUrl}/members/` + id, data);
   }
 }

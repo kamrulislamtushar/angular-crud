@@ -41,7 +41,7 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-12">
-                            <form  autocomplete="off" [formGroup]="memberForm" (ngSubmit)="onSubmit()">
+                            <form autocomplete="off" [formGroup]="memberForm" (ngSubmit)="onSubmit()">
                                 <div class="form-group mb-4">
                                     <label for="name">Full Name</label>
                                     <span class="form-icon-wrapper">
@@ -65,8 +65,8 @@
                                         </span>
                                         <input id="identity" formControlName="identity" name="identity"
                                             class="form-control form-icon-input-left"
-                                            [ngClass]="{ 'is-invalid': submitted && form.identity.errors }" type="number"
-                                            placeholder="Identification Number" required
+                                            [ngClass]="{ 'is-invalid': submitted && form.identity.errors }"
+                                            type="number" placeholder="Identification Number" required
                                             aria-describedby="Identification Number">
                                         <div *ngIf="submitted && form.identity.errors" class="invalid-feedback">
                                             <div *ngIf="form.identity.errors.required">Identification Number is required
@@ -83,7 +83,7 @@
                                         <select formControlName="department"
                                             [ngClass]="{ 'is-invalid': submitted && form.department.errors }"
                                             class="form-control form-icon-input-left">
-                                            <option selected  value="">Select Department</option>
+                                            <option selected value="">Select Department</option>
                                             <option value="HR">Human Resource</option>
                                             <option value="IT">IT Department</option>
                                             <option value="Marketing">Marketing Department</option>
