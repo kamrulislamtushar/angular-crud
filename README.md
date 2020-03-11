@@ -19,8 +19,11 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app w
 ## Running the project
 
 After running  `ng serve` for dev server visit `http://localhost:4200/`. Initially 12 members will be stored in local storage as seed data. You will be able to modify them any way you like. 
-For Login as Admin: email: admin@test.com , password: admin
-For login as Executive: email: executive@test.com, password: executive
+
+## Credentials for login
+For Loging in as Admin: email: admin@test.com , password: admin
+
+For loging in as Executive: email: executive@test.com, password: executive
 ## Build
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
