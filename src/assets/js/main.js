@@ -1,4 +1,12 @@
 (function ($) {
+  $("a.dropdown-item").click(function() {
+    $(".dropdown-menu").dropdown("toggle");
+    $("#navbarNav").removeClass("show");
+ });
+ $("a.nav-item").click(function() {
+  $(".dropdown-menu").dropdown("toggle");
+  $("#navbarNav").removeClass("show");
+});
   $(document).on('ready', function () {
     // Tooltips & Popovers
     $('[data-toggle="tooltip"]').tooltip();

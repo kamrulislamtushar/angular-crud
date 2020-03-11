@@ -49,7 +49,8 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                 case url.match(/\/members\/\d+$/) && method === 'DELETE':
                     return removeMembers();
 
-
+                case url.match(/\/members\/\d+$/) && method === 'PUT':
+                    return deleteMember();
                 case url.match(/\/members\/\d+$/) && method === 'GET':
                     return memberDetails();
                 default:
@@ -82,12 +83,26 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                 let member = members.filter(function (obj) {
                     return obj.id == id;
                 });
-                if (member) {
+                if (member.length > 0) {
                     return ok(member[0])
                 } else {
                    return notFound("Member Not found")
                 }
 
+            }
+        }
+        function deleteMember() {
+            if (!isLoggedIn() && !isAdmin()) {
+                return unauthorized();
+            } else {
+                let id = idFromUrl();
+                members = members.filter(function (obj) {
+                    return obj.id !== id;
+                });
+                members.push(body)
+                localStorage.removeItem('members')
+                localStorage.setItem('members', JSON.stringify(members))
+                return ok(members)
             }
         }
         function getMembers() {

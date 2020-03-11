@@ -23,4 +23,7 @@ export class MemberService {
   memberDetails(id) {
     return this.http.get<any>(`${environment.apiUrl}/members/`+id);
   }
+  editMember(data, id) {
+    return this.http.put<any>(`${environment.apiUrl}/members/`+id, data);
+  }
 }
