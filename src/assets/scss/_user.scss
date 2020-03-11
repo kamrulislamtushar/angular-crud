@@ -37,7 +37,7 @@ $ball_color: #3a0668;
         width: 75px;
         height: 100px;
         top: 30%;
-        
+
         &__bar {
           position: absolute;
           bottom: 0;
@@ -46,17 +46,17 @@ $ball_color: #3a0668;
           background: $bar_color;
           transform-origin: center bottom;
           box-shadow: 1px 1px 0 rgba(0,0,0,.2);
-          
-          @for $i from 1 through 5 { 
+
+          @for $i from 1 through 5 {
              &:nth-child(#{$i}) {
                left: ($i - 1) * 15px;
                transform: scale(1,$i*.2);
                animation: barUp#{$i} 4s infinite;
               }
           }
-          
+
         }
-        
+
         &__ball {
           position: absolute;
           bottom: 10px;
@@ -68,7 +68,7 @@ $ball_color: #3a0668;
           animation: ball 4s infinite;
         }
       }
-      
+
 }
 
   @keyframes ball {
@@ -130,8 +130,8 @@ $ball_color: #3a0668;
       transform: translate(0, 0);
     }
   }
-  
-  @keyframes barUp1 { 
+
+  @keyframes barUp1 {
     0% {
       transform: scale(1, .2);
     }
@@ -148,7 +148,7 @@ $ball_color: #3a0668;
       transform: scale(1,.2);
     }
   }
-  @keyframes barUp2 { 
+  @keyframes barUp2 {
     0% {
       transform: scale(1, .4);
     }
@@ -165,7 +165,7 @@ $ball_color: #3a0668;
       transform: scale(1, .4);
     }
   }
-  @keyframes barUp3 { 
+  @keyframes barUp3 {
     0% {
       transform: scale(1, .6);
     }
@@ -173,7 +173,7 @@ $ball_color: #3a0668;
       transform: scale(1, .6);
     }
   }
-  @keyframes barUp4 { 
+  @keyframes barUp4 {
     0% {
       transform: scale(1, .8);
     }
@@ -190,7 +190,7 @@ $ball_color: #3a0668;
       transform: scale(1, .8);
     }
   }
-  @keyframes barUp5 { 
+  @keyframes barUp5 {
     0% {
       transform: scale(1, 1);
     }

@@ -38,7 +38,7 @@ if(!members) {
     {
       id : 642343,
       name: 'Member Six',
-      department: 'Netowrking'
+      department: 'Networking'
     },
     {
       id : 735363,
