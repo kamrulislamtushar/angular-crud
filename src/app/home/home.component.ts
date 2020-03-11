@@ -17,6 +17,7 @@ export class HomeComponent implements OnInit {
   members;
   error: string;
   message: string;
+  finalData: object
 
   constructor(
     private formBuilder: FormBuilder,
@@ -32,9 +33,9 @@ export class HomeComponent implements OnInit {
   }
   ngOnInit() {
     this.memberForm = this.formBuilder.group({
-      name: ['', Validators.required],
-      identity: ['', Validators.required],
-      department: ['', Validators.required]
+      name: [null, Validators.required],
+      identity: [null, Validators.required],
+      department: [null, Validators.required]
     });
     this.memberService.getMembers()
       .pipe(first())
@@ -96,11 +97,17 @@ export class HomeComponent implements OnInit {
       return;
     }
     this.isLoading = true;
-    // Calling athetication service provides login method to authenticate user by calling api
-    this.memberService.addMember(this.form)
+
+    this.finalData = {
+      id: this.form.identity.value,
+      name: this.form.name.value,
+      department: this.form.department.value
+    }
+    this.memberService.addMember(this.finalData)
       .pipe(first())
       .subscribe(
         data => {
+          this.message = "Member added successfully!"
           this.isLoading = false;
         },
         error => {

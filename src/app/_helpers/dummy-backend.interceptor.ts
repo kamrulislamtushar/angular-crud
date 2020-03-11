@@ -49,9 +49,9 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                 case url.match(/\/members\/\d+$/) && method === 'DELETE':
                     return removeMembers();
 
-                
+
                 case url.match(/\/members\/\d+$/) && method === 'GET':
-                    return memberDetails();    
+                    return memberDetails();
                 default:
                     // Pass through any requests not handled above
                     return next.handle(request);
@@ -112,6 +112,10 @@ export class FakeBackendInterceptor implements HttpInterceptor {
             if (!isLoggedIn() && !isAdmin()) {
                 return unauthorized();
             } else {
+              members.push(body)
+              localStorage.removeItem('members')
+              localStorage.setItem('members', JSON.stringify(members))
+              return ok(members)
 
             }
         }
