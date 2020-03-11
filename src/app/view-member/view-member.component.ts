@@ -24,7 +24,6 @@ export class ViewMemberComponent implements OnInit {
       .pipe(first())
       .subscribe(
         data => {
-          console.log(data)
           this.member = data;
           this.isLoading = false;
         },

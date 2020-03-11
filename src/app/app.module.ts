@@ -12,6 +12,8 @@ import { JwtInterceptor, ErrorInterceptor, fakeBackendProvider } from './_helper
 import { NotFoundComponent } from './not-found/not-found.component';
 import { ViewMemberComponent } from './view-member/view-member.component';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+import { AddMemberComponent } from './add-member/add-member.component';
+import { EditMemberComponent } from './edit-member/edit-member.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,6 +22,8 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
     RegisterComponent,
     NotFoundComponent,
     ViewMemberComponent,
+    AddMemberComponent,
+    EditMemberComponent,
    
   ],
   imports: [

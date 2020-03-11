@@ -1,5 +1,19 @@
 $bar_color: #6b15b6;
 $ball_color: #3a0668;
+
+.nav {
+  box-shadow: 0 4px 5px rgba(228, 228, 228, 0.8);
+}
+
+.navbar-right {
+  display: -webkit-inline-box;
+  margin-left: auto;
+  margin-right: 6rem;
+}
+
+@media (max-width: 580px) {
+  .nav { overflow: auto; }
+}
 .invalid-feedback {
   position: absolute;
 }

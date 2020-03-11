@@ -19,14 +19,14 @@ export class AuthenticationService {
     public get currentUserValue(): User {
         return this.currentUserSubject.value;
     }
-/**
- * 
- * @param email 
- * @param password 
- * @returns user
- * @description logging in using user email & password and if token found storing that into-
- * loclstorage so user doesn't get logged out on page refresh
- */
+    /**
+     * 
+     * @param email 
+     * @param password 
+     * @returns user
+     * @description logging in using user email & password and if token found storing that into-
+     * loclstorage so user doesn't get logged out on page refresh
+     */
     login(email: string, password: string) {
         return this.http.post<any>(`${environment.apiUrl}/login`, { email, password })
             .pipe(map(user => {
