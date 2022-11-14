@@ -14,7 +14,7 @@
             <h1 class="h3">Add New Member</h1>
             <ol class="breadcrumb bg-transparent small p-0">
                 <li class="breadcrumb-item"><a routerLink="" href="#">Home</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Add New Member</li>
+                <li class="breadcrumb-item active" aria-current="page">Add New Player</li>
             </ol>
         </nav>
     </div>
@@ -36,14 +36,14 @@
         <div class="col-lg-8 col-sm-12 offset-lg-2">
             <div class="card">
                 <div class="card-header">
-                    Add New Member
+                    Add New Player
                 </div>
                 <div class="card-body">
                     <div class="row">
                         <div class="col-12">
                             <form autocomplete="off" [formGroup]="memberForm" (ngSubmit)="onSubmit()">
                                 <div class="form-group mb-4">
-                                    <label for="name">Full Name</label>
+                                    <label for="name">Name</label>
                                     <span class="form-icon-wrapper">
                                         <span class="form-icon form-icon--left">
                                             <i class="fa fa-user-circle form-icon__item"></i>
@@ -53,45 +53,24 @@
                                             class="form-control form-icon-input-left" type="text" placeholder="John Doe"
                                             required aria-describedby="John Doe">
                                         <div *ngIf="submitted && form.name.errors" class="invalid-feedback">
-                                            <div *ngIf="form.name.errors.required">Full Name is required</div>
+                                            <div *ngIf="form.name.errors.required">Name is required</div>
                                         </div>
                                     </span>
                                 </div>
                                 <div class="form-group mb-4">
-                                    <label for="identity">Identification Number</label>
+                                    <label for="identity">Age</label>
                                     <span class="form-icon-wrapper">
                                         <span class="form-icon form-icon--left">
                                             <i class="far fa-id-card form-icon__item"></i>
                                         </span>
-                                        <input id="identity" formControlName="identity" name="identity"
+                                        <input id="age" formControlName="age" name="age"
                                             class="form-control form-icon-input-left"
                                             [ngClass]="{ 'is-invalid': submitted && form.identity.errors }"
-                                            type="number" placeholder="Identification Number" required
-                                            aria-describedby="Identification Number">
-                                        <div *ngIf="submitted && form.identity.errors" class="invalid-feedback">
-                                            <div *ngIf="form.identity.errors.required">Identification Number is required
+                                            type="number" placeholder="Age" required
+                                            aria-describedby="Age">
+                                        <div *ngIf="submitted && form.age.errors" class="invalid-feedback">
+                                            <div *ngIf="form.age.errors.required">Age is required
                                             </div>
-                                        </div>
-                                    </span>
-                                </div>
-                                <div class="form-group mb-4">
-                                    <label for="id">Department</label>
-                                    <span class="form-icon-wrapper">
-                                        <span class="form-icon form-icon--left">
-                                            <i class="far fa-building form-icon__item"></i>
-                                        </span>
-                                        <select formControlName="department"
-                                            [ngClass]="{ 'is-invalid': submitted && form.department.errors }"
-                                            class="form-control form-icon-input-left">
-                                            <option selected value="">Select Department</option>
-                                            <option value="HR">Human Resource</option>
-                                            <option value="IT">IT Department</option>
-                                            <option value="Marketing">Marketing Department</option>
-                                            <option value="Management">Management Department</option>
-                                            <option value="Networking">Networking Department</option>
-                                        </select>
-                                        <div *ngIf="submitted && form.department.errors" class="invalid-feedback">
-                                            <div *ngIf="form.department.errors.required">Email is required</div>
                                         </div>
                                     </span>
                                 </div>

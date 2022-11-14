@@ -12,13 +12,22 @@ export class MemberService {
   ) { }
 
   getMembers() {
-    return this.http.get<any>(`${environment.apiUrl}/members`);
+    return this.http.get<any>(`${environment.apiUrl}/players`);
   }
+
+  getLiveScore() {
+    return this.http.get<any>(`${environment.apiUrl}/games/points`);
+  }
+
   addMember(data) {
-    return this.http.post<any>(`${environment.apiUrl}/members`, data);
+    return this.http.post<any>(`${environment.apiUrl}/players`, data);
+  }
+
+  playGame(data) {
+    return this.http.post<any>(`${environment.apiUrl}/games/roll/dice`, data);
   }
   deleteMember(id) {
-    return this.http.delete<any>(`${environment.apiUrl}/members/` + id);
+    return this.http.delete<any>(`${environment.apiUrl}/players/` + id);
   }
   memberDetails(id) {
     return this.http.get<any>(`${environment.apiUrl}/members/` + id);

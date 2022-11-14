@@ -12,7 +12,7 @@
     <div class="u-body">
         <div class="mb-4 mt-4">
             <nav aria-label="breadcrumb">
-                <h1 class="h3">Members</h1>
+                <h1 class="h3">Players</h1>
                 <ol class="breadcrumb bg-transparent small p-0">
                     <li class="breadcrumb-item active" aria-current="page"><a routerLink="" href="#">Home</a></li>
                 </ol>
@@ -36,12 +36,21 @@
             <header class="card-header ml-3">
                 <div class="row">
                     <div class="col-6">
-                        <h2 class="h3 card-header-title text-primary">Manage Members</h2>
+                        <h2 class="h3 card-header-title text-primary">Manage Players</h2>
                     </div>
-                    <div *ngIf="isAdmin()" class="col-6">
-                        <a class="float-right btn btn-primary btn-sm" routerLink="members-create" href="">
-                            <i class="fas fa-user-plus"></i> Add Member
-                        </a>
+                    <div class="col-6">
+                       <div class="row">
+                           <div class="col-3">
+                               <a class="float-right btn btn-primary btn-sm" routerLink="players-create" href="">
+                                   <i class="fas fa-user-plus"></i> Add Players
+                               </a>
+                           </div>
+                           <div class="col-3">
+                               <a class="float-right btn btn-primary btn-sm" routerLink="game" href="">
+                                   <i class="fas fa-user-plus"></i> Play game
+                               </a>
+                           </div>
+                       </div>
                     </div>
                 </div>
 
@@ -54,7 +63,7 @@
                                 <th scope="col"><i class="fas fa-sort-numeric-down mr-2"></i>#</th>
                                 <th scope="col"><i class="far fa-id-card mr-2"></i>ID</th>
                                 <th scope="col"><i class="fas fa-info-circle mr-2"></i>Name</th>
-                                <th scope="col"><i class="far fa-building mr-2"></i>Department</th>
+                                <th scope="col"><i class="far fa-building mr-2"></i>Age</th>
                                 <th class="text-center" scope="col"><i class="fas fa-cogs mr-2"></i>Actions</th>
                             </tr>
                         </thead>
@@ -65,7 +74,7 @@
                                 <td>{{ member.id }}</td>
                                 <td>{{ member.name }}</td>
                                 <td>
-                                    <a class="badge badge-soft-success" href="#">{{ member.department }}</a>
+                                    <a class="badge badge-soft-success" href="#">{{ member.age }}</a>
                                 </td>
                                 <td class="text-center">
                                     <a id="actions1Invoker" class="link-muted" href="#!" aria-haspopup="true"
@@ -76,19 +85,8 @@
                                     <div class="dropdown-menu dropdown-menu-right dropdown" style="width: 150px;"
                                         aria-labelledby="actions1Invoker">
                                         <ul class="list-unstyled mb-0">
+
                                             <li>
-                                                <a class="d-flex align-items-center link-muted py-2 px-3"
-                                                    [routerLink]="['/members/'+ member.id]" href="#">
-                                                    <i class="fas fa-info-circle mr-2 text-primary"></i> View Details
-                                                </a>
-                                            </li>
-                                            <li *ngIf="isAdmin()">
-                                                <a class="d-flex align-items-center link-muted py-2 px-3"
-                                                    [routerLink]="['/members-edit/'+ member.id]" href="#">
-                                                    <i class="fas fa-user-edit mr-2 text-info"></i> Edit Details
-                                                </a>
-                                            </li>
-                                            <li *ngIf="isAdmin()">
                                                 <button
                                                     class="d-flex align-items-center btn btn-link link-muted py-2 px-3"
                                                     (click)="removeMember(member.id)">

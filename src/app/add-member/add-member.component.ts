@@ -4,6 +4,7 @@ import { Role } from '../_models';
 import { MemberService } from '../_services'
 import { first } from 'rxjs/operators';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {Router} from "@angular/router";
 @Component({
   selector: 'app-add-member',
   templateUrl: './add-member.component.html',
@@ -16,26 +17,21 @@ export class AddMemberComponent implements OnInit {
   members;
   error: string;
   message: string;
-  finalData: object
+  finalData: object;
   constructor(
     private formBuilder: FormBuilder,
     private memberService: MemberService,
-    private authenticationService: AuthenticationService
+    private router: Router,
   ) { }
   ngOnInit() {
     this.memberForm = this.formBuilder.group({
       name: [null, Validators.required],
-      identity: [null, Validators.required],
-      department: [null, Validators.required]
+      age: [null, Validators.required]
     });
   }
   get form() {
     return this.memberForm.controls;
   }
-  isAdmin() {
-    return this.authenticationService.currentUserValue.role == Role.Admin
-  }
-
   onSubmit() {
     this.submitted = true;
     if (this.memberForm.invalid) {
@@ -44,16 +40,16 @@ export class AddMemberComponent implements OnInit {
     this.isLoading = true;
 
     this.finalData = {
-      id: this.form.identity.value,
       name: this.form.name.value,
-      department: this.form.department.value
+      age: this.form.age.value
     }
     this.memberService.addMember(this.finalData)
       .pipe(first())
       .subscribe(
         data => {
-          this.message = "Member added successfully!"
+          this.message = "Player added successfully!"
           this.isLoading = false;
+          this.router.navigate(['/'])
         },
         error => {
           this.error = error;

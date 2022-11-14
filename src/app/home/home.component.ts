@@ -17,7 +17,7 @@ export class HomeComponent implements OnInit {
   members;
   error: string;
   message: string;
-  finalData: object
+  finalData: object;
 
   constructor(
     private formBuilder: FormBuilder,

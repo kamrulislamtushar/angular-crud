@@ -14,6 +14,7 @@ import { ViewMemberComponent } from './view-member/view-member.component';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { AddMemberComponent } from './add-member/add-member.component';
 import { EditMemberComponent } from './edit-member/edit-member.component';
+import { PlayGameComponent } from './play-game/play-game.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,6 +25,7 @@ import { EditMemberComponent } from './edit-member/edit-member.component';
     ViewMemberComponent,
     AddMemberComponent,
     EditMemberComponent,
+    PlayGameComponent,
    
   ],
   imports: [
@@ -34,9 +36,9 @@ import { EditMemberComponent } from './edit-member/edit-member.component';
     SweetAlert2Module.forRoot()
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    // { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
-    fakeBackendProvider
+    // fakeBackendProvider
     
   ],
   bootstrap: [AppComponent]
